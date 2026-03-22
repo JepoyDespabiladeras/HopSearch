@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FAKENING</title>
+
+<style>
+
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background: #a9c8a5;
+}
+
+
+.header{
+    background:#b7d1b0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 20px;
+}
+
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo img{
+    width:35px;
+    height:35px;
+}
+
+
+.balay img{
+    width:25px;
+    cursor:pointer;
+}
+
+
+.container{
+    width:90%;
+    max-width:800px;
+    margin:40px auto;
+    text-align:center;
+}
+
+.title{
+    font-weight:bold;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#333;
+    margin-bottom:30px;
+}
+
+.faq{
+    text-align:left;
+}
+
+.faq-item{
+    background:#e6e6e6;
+    margin:10px 0;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+.faq-item span{
+    font-weight:bold;
+}
+
+
+.faq-item:hover{
+    background:#dcdcdc;
+}
+
+
+@media (max-width:600px){
+
+    .title{
+        font-size:18px;
+    }
+
+    .subtitle{
+        font-size:14px;
+    }
+
+    .faq-item{
+        font-size:14px;
+        padding:10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="header">
+
+    <div class="logo">
+        
+        <img src="hoplog.png" alt="lugo">
+        <span>HopSearch</span>
+    </div>
+
+    <div class="balay">
+        
+        <img src="balay.png" alt="balay">
+    </div>
+
+</div>
+
+
+<div class="container">
+
+    <h2 class="title">FREQUENTLY ASKED QUESTIONS</h2>
+    <p class="subtitle">
+        These are the most commonly asked questions about HopSearch.<br>
+        Happy to lend a helping hand!
+    </p>
+
+    <div class="faq">
+
+        <div class="faq-item"><p>What is HopSearch?</p><span>+</span></div>
+        <div class="faq-item"><p>Does HopSearch show which hospitals are currently available?</p><span>+</span></div>
+        <div class="faq-item"><p>Can I filter facilities based on medical services offered?</p><span>+</span></div>
+        <div class="faq-item"><p>Can I search for clinics and health centers, not just hospitals?</p><span>+</span></div>
+        <div class="faq-item"><p>How do I find the nearest hospital using HopSearch?</p><span>+</span></div>
+        <div class="faq-item"><p>Why doesn't HopSearch show real-time bed availability or wait times?</p><span>+</span></div>
+        <div class="faq-item"><p>What information is shown for each medical facility?</p><span>+</span></div>
+        <div class="faq-item"><p>Is HopSearch useful even when it's not an emergency?</p><span>+</span></div>
+        <div class="faq-item"><p>Does HopSearch include both public and private facilities?</p><span>+</span></div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
