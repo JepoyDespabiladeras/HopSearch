@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HopSearch Dashboard</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #a8c8a0;
+    padding: 10px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img { width: 40px; }
+.home img { width: 25px; }
+
+
+.container {
+    display: flex;
+    padding: 30px;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.main-content { flex: 2.5; }
+
+.section-title {
+    font-size: 28px;
+    letter-spacing: 2px;
+}
+
+.sub-text {
+    font-size: 14px;
+    margin-bottom: 25px;
+    color: #666;
+}
+
+
+.service-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 25px;
+}
+
+
+.icon-square img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #eee;
+    margin-right: 15px;
+}
+
+
+.details-container { flex: 1; }
+
+.location-label {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+
+.info-box {
+    background-color: #c8e6c9;
+    padding: 15px;
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 13px;
+}
+
+.info-box ul {
+    padding-left: 20px;
+}
+
+
+.sidebar {
+    flex: 1;
+    background-color: #dcedc8;
+    padding: 20px;
+    border-radius: 6px;
+    height: fit-content;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.medical-box h4 {
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.sidebar hr {
+    border: none;
+    border-top: 2px solid #333;
+    margin: 15px 0;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+
+@media (max-width: 900px) {
+    .container { flex-direction: column; }
+    .info-box { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<header class="header">
+    <div class="logo">
+        <img src="hoplog.png">
+        <span>HopSearch</span>
+    </div>
+
+    <div class="home">
+        <img src="balay.png">
+    </div>
+</header>
+
+<div class="container">
+
+
+<main class="main-content">
+
+<h1 class="section-title">SPECIAL MENTIONS</h1>
+<p class="sub-text">
+Currently available free services from hospitals, clinics and health centers.
+</p>
+
+<div class="service-row">
+    <div class="icon-square">
+        <img src="poso.png"> 
+    </div>
+    <div class="details-container">
+        <div class="location-label">Medicard - Anabu Kostal, Aguinaldo Highway, Anabu II D, Imus, Cavite</div>
+        <div class="info-box">
+            <ul>
+                <li>Medical Consultation</li>
+                <li>Blood Typing</li>
+                <li>ECG</li>
+            </ul>
+            <ul>
+                <li>Chest X-Ray</li>
+                <li>FBS/RBS Testing</li>
+                <li>Dental Services</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="service-row">
+    <div class="icon-square">
+        <img src="poso.png"> 
+    </div>
+    <div class="details-container">
+        <div class="location-label">Divine Grade Medical Center - Antero Soriano Highway, General Trias, Cavite</div>
+        <div class="info-box">
+            <ul>
+                <li>Blood Typing</li>
+                <li>Blood Glucose Testing</li>
+                <li>Pregnancy Test</li>
+            </ul>
+            <ul>
+                <li>Blood Pressure</li>
+                <li>Monitoring</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="service-row">
+    <div class="icon-square">
+        <img src="poso.png"> 
+    </div>
+    <div class="details-container">
+        <div class="location-label">MPre Clinic - Brookside Lane San Francisco, General Trias</div>
+        <div class="info-box">
+            <ul>
+                <li>Vital Signs</li>
+                <li>ECG</li>
+                <li>Urinalysis</li>
+            </ul>
+            <ul>
+                <li>X-Ray</li>
+                <li>Consultation</li>
+                <li>General Medicine</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="service-row">
+    <div class="icon-square">
+        <img src="poso.png"> 
+    </div>
+    <div class="details-container">
+        <div class="location-label">Hernandez Diagnostic Clinic - 9168 ME Gen. Trias Drive, Brgy. Tejero Rosario, Cavite</div>
+        <div class="info-box">
+            <ul>
+                <li>Vital Signs</li>
+                <li>ECG</li>
+                <li>Urinalysis</li>
+            </ul>
+            <ul>
+                <li>Blood Typing</li>
+                <li>Blood Glucose Testing</li>
+                <li>Pregnancy Test</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="service-row">
+    <div class="icon-square">
+        <img src="poso.png">
+    </div>
+    <div class="details-container">
+        <div class="location-label">DOC AID Diagnostic Center - First Grand Building, Molino, Bacoor</div>
+        <div class="info-box">
+            <ul>
+                <li>Blood Typing</li>
+                <li>Blood Glucose Testing</li>
+                <li>Pregnancy Test</li>
+            </ul>
+            <ul>
+                <li>Vital Signs</li>
+                <li>ECG</li>
+                <li>Urinalysis</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</main>
+
+
+<aside class="sidebar">
+
+<div class="sidebar-header">
+    <span>ESTIMATED DATE:</span>
+    <span>☰</span>
+</div>
+
+<div class="medical-box">
+    <h4>Official Medical Pages & Channels</h4>
+    <hr>
+
+    <ul>
+        <li>• Tzu Chi Philippines</li>
+        <li>• City Government of Taguig</li>
+        <li>• YAKAP PhilHealth</li>
+    </ul>
+
+    <hr>
+
+    <ul>
+        <li>• Doctor Mike</li>
+        <li>• Nurseledclinics</li>
+        <li>• KenDBerryMD</li>
+    </ul>
+
+</div>
+
+</aside>
+
+</div>
+
+</body>
+</html>
