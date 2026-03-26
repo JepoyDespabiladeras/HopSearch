@@ -148,9 +148,8 @@ function clearMapForRoute() {
 }
 
 // Add Geoapify tile layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap'
+L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors, HOT'
 }).addTo(map);
 
 function drawRoute(fromLat, fromLng, toLat, toLng) {
