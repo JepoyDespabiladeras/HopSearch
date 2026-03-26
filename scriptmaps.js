@@ -4,8 +4,14 @@ const apiKey = "cc50496e1b5d49538867accb9c51ad98";
 // Initialize the map
 const map = L.map('map').setView([14.5995, 120.9842], 13); 
 // Ask user manually first
-const allowLocation = confirm("Do you want to share your location?");
+let allowLocation = localStorage.getItem("allowLocation");
 
+if (allowLocation === null) {
+    allowLocation = confirm("Do you want to share your location?");
+    localStorage.setItem("allowLocation", allowLocation);
+} else {
+    allowLocation = allowLocation === "true";
+}
 // Custom marker icons
 const redIcon = new L.Icon({
     iconUrl: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
@@ -27,35 +33,48 @@ const greenIcon = new L.Icon({
 
 if (allowLocation) {
 
-    if (navigator.geolocation) {
+    // Check if location already saved
+    const savedLat = localStorage.getItem("userLat");
+    const savedLng = localStorage.getItem("userLng");
+
+    if (savedLat && savedLng) {
+        userLat = parseFloat(savedLat);
+        userLng = parseFloat(savedLng);
+
+        setUserMarker(userLat, userLng);
+
+    } else if (navigator.geolocation) {
+
         navigator.geolocation.getCurrentPosition(
-
             function (position) {
-                const userLat = position.coords.latitude;
-                const userLng = position.coords.longitude;
+                userLat = position.coords.latitude;
+                userLng = position.coords.longitude;
 
-                // Add marker for user
-                const userMarker = L.marker([userLat, userLng], {
-                    title: "Your Location"
-                }).addTo(map);
+                // Save to localStorage
+                localStorage.setItem("userLat", userLat);
+                localStorage.setItem("userLng", userLng);
 
-                userMarker.bindPopup("You are here").openPopup();
-
-                // Center map to user
-                map.setView([userLat, userLng], 14);
+                setUserMarker(userLat, userLng);
             },
-
-            function (error) {
+            function () {
                 alert("Location access denied or unavailable.");
             }
-
         );
+
     } else {
         alert("Geolocation is not supported by your browser.");
     }
 
 } else {
     alert("Location access was not allowed.");
+}
+function setUserMarker(lat, lng) {
+    const userMarker = L.marker([lat, lng], {
+        title: "Your Location"
+    }).addTo(map);
+
+    userMarker.bindPopup("You are here").openPopup();
+    map.setView([lat, lng], 14);
 }
 
 // Add Geoapify tile layer
