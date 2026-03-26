@@ -10,7 +10,14 @@ let currentRoute = null;
 // Initialize the map
 const map = L.map('map').setView([14.5995, 120.9842], 13);
 // Ask user manually first
-const allowLocation = confirm("Do you want to share your location?");
+let allowLocation = localStorage.getItem("allowLocation");
+
+if (allowLocation === null) {
+    allowLocation = confirm("Do you want to share your location?");
+    localStorage.setItem("allowLocation", allowLocation);
+} else {
+    allowLocation = allowLocation === "true";
+}
 
 // Custom marker icons
 const redIcon = new L.Icon({
@@ -34,31 +41,34 @@ const greenIcon = new L.Icon({
 
 if (allowLocation) {
 
-    if (navigator.geolocation) {
+    // Check if location already saved
+    const savedLat = localStorage.getItem("userLat");
+    const savedLng = localStorage.getItem("userLng");
+
+    if (savedLat && savedLng) {
+        userLat = parseFloat(savedLat);
+        userLng = parseFloat(savedLng);
+
+        setUserMarker(userLat, userLng);
+
+    } else if (navigator.geolocation) {
+
         navigator.geolocation.getCurrentPosition(
-                function (position) {
+            function (position) {
                 userLat = position.coords.latitude;
                 userLng = position.coords.longitude;
 
-                console.log("User Location:", userLat, userLng );
+                // Save to localStorage
+                localStorage.setItem("userLat", userLat);
+                localStorage.setItem("userLng", userLng);
 
-                // Add marker for user
-                const userMarker = L.marker([userLat, userLng], {
-                    title: "Your Location"
-                }).addTo(map);
-
-                userMarker.bindPopup("You are here").openPopup();
-
-                // Center map to user
-                map.setView([userLat, userLng], 14);
+                setUserMarker(userLat, userLng);
             },
-
-            function (error) {
+            function () {
                 alert("Location access denied or unavailable.");
             }
-            
-
         );
+
     } else {
         alert("Geolocation is not supported by your browser.");
     }
@@ -66,11 +76,19 @@ if (allowLocation) {
 } else {
     alert("Location access was not allowed.");
 }
+function setUserMarker(lat, lng) {
+    const userMarker = L.marker([lat, lng], {
+        title: "Your Location"
+    }).addTo(map);
+
+    userMarker.bindPopup("You are here").openPopup();
+    map.setView([lat, lng], 14);
+}
 
 // Add Geoapify tile layer
-L.tileLayer(`https://maps.geoapify.com/v1/tile/carto/{z}/{x}/{y}.png?apiKey=${apiKey}`, {
-    maxZoom: 20,
-    attribution: '© OpenStreetMap contributors © Geoapify'
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
 }).addTo(map);
 
 function drawRoute(fromLat, fromLng, toLat, toLng) {
@@ -93,7 +111,12 @@ function drawRoute(fromLat, fromLng, toLat, toLng) {
                 return;
             }
 
-            const coords = result.features[0].geometry.coordinates;
+            let coords = result.features[0].geometry.coordinates;
+
+// Handle MultiLineString
+             if (result.features[0].geometry.type === "MultiLineString") {
+             coords = coords.flat();
+            }
             const latlngs = coords.map(coord => [coord[1], coord[0]]);
 
             if (currentRoute) {
@@ -108,16 +131,19 @@ function drawRoute(fromLat, fromLng, toLat, toLng) {
             const bounds = currentRoute.getBounds();
 
             if (bounds.isValid()) {
-                map.fitBounds(bounds, {
-                    padding: [50, 50],
-                    maxZoom: 16
-                });
+                map.fitBounds(bounds.pad(0.3));
+                 
             }
+            map.eachLayer(layer => {
+            if (layer instanceof L.TileLayer) {
+          layer.redraw();
+            }
+            });
 
             // ✅ Force redraw
             setTimeout(() => {
                 map.invalidateSize();
-            }, 100);
+            }, 300);
         })
         .catch(err => {
             console.log("Routing error:", err);
