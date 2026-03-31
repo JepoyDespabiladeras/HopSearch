@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HopSearch - Appointments</title>
+    <link rel="stylesheet" href="appointment.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="HopSearch home">
+          <!-- Simple inline logo to match the screenshot style -->
+          <img 
+      src="images/hoplog.png" 
+      alt="HopSearch Logo" 
+      class="hop-logo"
+    />
+
+    <span class="brand-name">HopSearch</span>
+  </div>
+
+  <!-- 🔁 HOME BUTTON (BALAY PNG) -->
+  <a class="home-link" href="#" aria-label="Go to home">
+    <img 
+      src="images/balay.png" 
+      alt="Home" 
+      class="home-icon-img"
+    />
+  </a>
+</header>
+      <main class="content-wrap">
+        <section class="hero-title">
+          <h1>APPOINTMENTS</h1>
+          <p class="hero-subtitle">
+            Book a hospital appointment. Please double-check your details before submitting.
+          </p>
+        </section>
+        <section class="content-grid">
+          <div class="panel panel-main">
+            <h2 class="panel-title">Request an Appointment (Hospitals only)</h2>
+            <div class="notice" role="note" aria-label="Hospital-only notice">
+              This booking form is for hospital establishments only. If this is an emergency, contact your local
+              emergency number immediately.
+            </div>
+            <form id="appointmentForm" novalidate>
+              <fieldset class="fieldset">
+                <legend class="sr-only">Appointment details</legend>
+                <div class="field-row">
+                  <label for="hospitalName">Hospital Name <span class="req">*</span></label>
+                  <input
+                    id="hospitalName"
+                    name="hospitalName"
+                    class="field-control"
+                    type="text"
+                    required
+                    placeholder="Example: St. Joseph Hospital"
+                    list="hospitalList"
+                    autocomplete="organization"
+                  />
+                  <datalist id="hospitalList">
+                    <option value="St. Joseph Hospital"></option>
+                    <option value="Cavite Medical Center"></option>
+                    <option value="General Hospital - Main"></option>
+                    <option value="City Health Hospital"></option>
+                  </datalist>
+                  <div class="field-error" data-error-for="hospitalName" aria-live="polite"></div>
+                </div>
+                <div class="field-row">
+                  <label for="department">Department <span class="req">*</span></label>
+                  <select id="department" name="department" class="field-control" required>
+                    <option value="" selected disabled>Select department</option>
+                    <option>General Surgery</option>
+                    <option>Internal Medicine</option>
+                    <option>Pediatrics</option>
+                    <option>Obstetrics & Gynecology</option>
+                    <option>Neurology</option>
+                    <option>Cardiology</option>
+                    <option>Diagnostics / Imaging</option>
+                  </select>
+                  <div class="field-error" data-error-for="department" aria-live="polite"></div>
+                </div>
+                <div class="field-row">
+                  <label for="doctorName">Preferred Doctor (optional)</label>
+                  <input
+                    id="doctorName"
+                    name="doctorName"
+                    class="field-control"
+                    type="text"
+                    placeholder="If you do not know, leave blank"
+                  />
+                  <div class="field-error" data-error-for="doctorName" aria-live="polite"></div>
+                </div>
+              </fieldset>
+              <fieldset class="fieldset">
+                <legend class="sr-only">Patient details</legend>
+                <div class="section-divider" role="separator" aria-hidden="true"></div>
+                <div class="two-col">
+                  <div class="field-row">
+                    <label for="patientName">Patient Full Name <span class="req">*</span></label>
+                    <input
+                      id="patientName"
+                      name="patientName"
+                      class="field-control"
+                      type="text"
+                      required
+                      placeholder="As shown on records"
+                      autocomplete="name"
+                    />
+                    <div class="field-error" data-error-for="patientName" aria-live="polite"></div>
+                  </div>
+                  <div class="field-row">
+                    <label for="age">Age <span class="req">*</span></label>
+                    <input
+                      id="age"
+                      name="age"
+                      class="field-control"
+                      type="number"
+                      inputmode="numeric"
+                      min="0"
+                      max="130"
+                      required
+                      placeholder="e.g., 35"
+                    />
+                    <div class="field-error" data-error-for="age" aria-live="polite"></div>
+                  </div>
+                </div>
+                <div class="two-col">
+                  <div class="field-row">
+                    <label for="gender">Gender <span class="req">*</span></label>
+                    <select id="gender" name="gender" class="field-control" required>
+                      <option value="" selected disabled>Select gender</option>
+                      <option>Female</option>
+                      <option>Male</option>
+                      <option>Prefer not to say</option>
+                    </select>
+                    <div class="field-error" data-error-for="gender" aria-live="polite"></div>
+                  </div>
+                  <div class="field-row">
+                    <label for="phone">Contact Number <span class="req">*</span></label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      class="field-control"
+                      type="tel"
+                      required
+                      placeholder="e.g., 09xxxxxxxxx"
+                      autocomplete="tel"
+                    />
+                    <div class="field-error" data-error-for="phone" aria-live="polite"></div>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <label for="email">Email (optional)</label>
+                  <input
+                    id="email"
+                    name="email"
+                    class="field-control"
+                    type="email"
+                    placeholder="For confirmation (optional)"
+                    autocomplete="email"
+                  />
+                  <div class="field-error" data-error-for="email" aria-live="polite"></div>
+                </div>
+              </fieldset>
+              <fieldset class="fieldset">
+                <legend class="sr-only">Visit details</legend>
+                <div class="section-divider" role="separator" aria-hidden="true"></div>
+                <div class="two-col">
+                  <div class="field-row">
+                    <label for="visitType">Visit Type <span class="req">*</span></label>
+                    <div class="radio-group" role="group" aria-labelledby="visitTypeLabel">
+                      <div class="radio-title" id="visitTypeLabel">Choose one</div>
+                      <label class="radio-option">
+                        <input type="radio" name="visitType" value="New Patient" required />
+                        <span>New Patient</span>
+                      </label>
+                      <label class="radio-option">
+                        <input type="radio" name="visitType" value="Follow-up" required />
+                        <span>Follow-up</span>
+                      </label>
+                    </div>
+                    <div class="field-error" data-error-for="visitType" aria-live="polite"></div>
+                  </div>
+                  <div class="field-row">
+                    <label for="appointmentDate">Preferred Date <span class="req">*</span></label>
+                    <input id="appointmentDate" name="appointmentDate" class="field-control" type="date" required />
+                    <div class="field-error" data-error-for="appointmentDate" aria-live="polite"></div>
+                  </div>
+                </div>
+                <div class="field-row">
+                  <label>Preferred Time Slot <span class="req">*</span></label>
+                  <div id="timeSlots" class="slot-grid" aria-label="Available time slots" role="group"></div>
+                  <input type="hidden" id="appointmentTime" name="appointmentTime" required />
+                  <div class="field-error" data-error-for="appointmentTime" aria-live="polite"></div>
+                </div>
+                <div class="field-row">
+                  <label for="reason">Reason / Concern <span class="req">*</span></label>
+                  <textarea
+                    id="reason"
+                    name="reason"
+                    class="field-control field-textarea"
+                    required
+                    rows="4"
+                    placeholder="Briefly describe symptoms or the reason for the visit"
+                  ></textarea>
+                  <div class="field-error" data-error-for="reason" aria-live="polite"></div>
+                </div>
+                <div class="field-row">
+                  <label for="consent" class="consent-row">
+                    <input id="consent" name="consent" type="checkbox" required />
+                    <span>
+                      I understand that this is a booking request and the hospital will confirm availability.
+                      <span class="req">*</span>
+                    </span>
+                  </label>
+                  <div class="field-error" data-error-for="consent" aria-live="polite"></div>
+                </div>
+                <div class="actions-row">
+                  <button class="btn btn-primary" type="submit">
+                    Submit Appointment Request
+                  </button>
+                  <button class="btn btn-secondary" type="button" id="clearBtn">
+                    Clear Form
+                  </button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <aside class="panel panel-side">
+            <h2 class="panel-title">Your Appointment Summary</h2>
+            <div class="summary" aria-live="polite" aria-atomic="true">
+              <div class="summary-item">
+                <span class="summary-label">Hospital</span>
+                <span class="summary-value" data-summary="hospitalName">-</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Department</span>
+                <span class="summary-value" data-summary="department">-</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Patient</span>
+                <span class="summary-value" data-summary="patientName">-</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Date</span>
+                <span class="summary-value" data-summary="appointmentDate">-</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Time</span>
+                <span class="summary-value" data-summary="appointmentTime">-</span>
+              </div>
+              <div class="summary-item">
+                <span class="summary-label">Visit Type</span>
+                <span class="summary-value" data-summary="visitType">-</span>
+              </div>
+            </div>
+            <div class="side-help">
+              <h3 class="side-title">Tips</h3>
+              <ul class="tips">
+                <li>Choose a date first to see available time slots.</li>
+                <li>Write a short reason to help the hospital prepare.</li>
+                <li>For emergencies, do not wait for confirmation.</li>
+              </ul>
+            </div>
+          </aside>
+        </section>
+      </main>
+      <div id="modalOverlay" class="modal-overlay" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+          <div class="modal-header">
+            <h2 id="modalTitle">Confirm Your Request</h2>
+            <button type="button" class="icon-btn" id="closeModalBtn" aria-label="Close confirmation modal">
+              <span aria-hidden="true">X</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modalBody"></div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="editBtn">Edit</button>
+            <button type="button" class="btn btn-primary" id="confirmBtn">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="appointment.js"></script>
+  </body>
+</html>
